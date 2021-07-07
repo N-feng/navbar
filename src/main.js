@@ -10,11 +10,9 @@ Vue.config.productionTip = false;
 const vueLifecycles = singleSpaVue({
   Vue,
   appOptions: {
-    render(h) {
-      return h(App, { props: { githubLink: this.githubLink } });
-    },
-    router,
-  },
+    render: h => h(App),
+    router
+  }
 });
 
 export const bootstrap = vueLifecycles.bootstrap;
