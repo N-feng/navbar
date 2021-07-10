@@ -9,6 +9,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "ant-design-vue": "^1.7.6",
     "core-js": "^3.4.4",
     "single-spa-vue": "^1.5.2",
     "systemjs-webpack-interop": "^1.1.0",
