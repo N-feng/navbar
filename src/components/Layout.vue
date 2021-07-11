@@ -1,47 +1,15 @@
 <template>
-  <a-layout id="components-layout-demo-side" style="min-height: 100vh">
-    <a-layout-sider v-model="collapsed" collapsible>
-      <div class="logo" />
-      <a-menu theme="dark" :default-selected-keys="['1']" mode="vertical">
-        <a-menu-item key="1">
-          <a-icon type="pie-chart" />
-          <span>Option 1</span>
-        </a-menu-item>
-        <a-menu-item key="2">
-          <a-icon type="desktop" />
-          <span>Option 2</span>
-        </a-menu-item>
-        <a-sub-menu key="sub1">
-          <span slot="title"><a-icon type="user" /><span>User</span></span>
-          <a-menu-item key="3">
-            Tom
-          </a-menu-item>
-          <a-menu-item key="4">
-            Bill
-          </a-menu-item>
-          <a-menu-item key="5">
-            Alex
-          </a-menu-item>
-        </a-sub-menu>
-        <a-sub-menu key="sub2">
-          <span slot="title"><a-icon type="team" /><span>Team</span></span>
-          <a-menu-item key="6">
-            Team 1
-          </a-menu-item>
-          <a-menu-item key="8">
-            Team 2
-          </a-menu-item>
-        </a-sub-menu>
-        <a-menu-item key="9">
-          <a-icon type="file" />
-          <span>File</span>
-        </a-menu-item>
-      </a-menu>
+  <a-layout id="components-layout-side" style="min-height: 100vh">
+    <a-layout-sider v-model="collapsed" collapsible style="background: #fff">
+      <Menu />
     </a-layout-sider>
   </a-layout>
 </template>
 <script>
+import Menu from "./Menu.vue";
+
 export default {
+  components: { Menu },
   data() {
     return {
       collapsed: false
@@ -51,14 +19,9 @@ export default {
 </script>
 
 <style>
-#components-layout-demo-side {
-  position: fixed;
-  left: 0;
-  top: 0;
-}
-#components-layout-demo-side .logo {
-  height: 32px;
-  background: rgba(255, 255, 255, 0.2);
-  margin: 16px;
+#components-layout-side .ant-layout-sider-trigger {
+  background: #fff;
+  color: rgba(0, 0, 0, 0.65);
+  border-right: 1px solid #e8e8e8;
 }
 </style>
