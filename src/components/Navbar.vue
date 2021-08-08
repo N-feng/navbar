@@ -1,26 +1,28 @@
 <template>
-  <nav>
-    <a-layout id="components-layout-side" style="min-height: 100vh">
-      <a-layout-sider collapsible style="background: #fff" @collapse="collapse">
+  <!-- <nav>
+    <a-layout id="components-layout-side" style="min-height: 100vh"> -->
+      <a-layout-sider :collapsed="collapsed" style="background: #fff">
         <Menu :routes="routes" />
       </a-layout-sider>
-    </a-layout>
-  </nav>
+    <!-- </a-layout>
+  </nav> -->
 </template>
 <script>
 import Menu from "./Menu.vue";
 
 export default {
   components: { Menu },
+  props: ['collapsed'],
   data: () => ({
-    collapsed: false,
+    // collapsed: true,
     routes: JSON.parse(localStorage.getItem("router")) || []
   }),
-  methods: {
-    collapse(collapsed) {
-      window.myBus.emit("setCollapsed", collapsed);
-    }
-  }
+  // created() {
+  //   window.myBus &&
+  //     window.myBus.on("setCollapsed", ({ detail }) => {
+  //       this.collapsed = detail;
+  //     });
+  // }
 };
 </script>
 
