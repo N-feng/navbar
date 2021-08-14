@@ -13,11 +13,55 @@
         @handleLink="handleLink"
       />
     </template>
+    <a-menu-item key="vite">
+      <!-- <div>
+        <a-icon type="user" /> -->
+      <a href="/vite-example" @click="goToChildRoute">viteApp</a>
+      <!-- </div> -->
+      <!-- <router-link to="/vite-example">viteApp</router-link> -->
+    </a-menu-item>
+    <a-menu-item key="login">
+      <div>
+        <a-icon type="user" />
+        <router-link to="/login-aaa">Login</router-link>
+        <!-- <span>Login</span> -->
+      </div>
+    </a-menu-item>
   </a-menu>
 </template>
 
 <script>
-import SubMenu from './SubMenu.vue'
+import { Menu } from "ant-design-vue";
+
+const SubMenu = {
+  template: `
+    <a-sub-menu :key="menuInfo.menuCode" v-bind="$props" v-on="$listeners">
+      <span slot="title">
+        <a-icon type="mail" /><span>{{ menuInfo.menuName }}</span>
+      </span>
+      <template v-for="item in menuInfo.menus">
+        <a-menu-item v-if="!item.menus.length" :key="item.menuCode">
+          <div @click="$emit('handleLink', item)">
+            <a-icon type="pie-chart" />
+            <span>{{ item.menuName }}</span>
+          </div>
+        </a-menu-item>
+        <sub-menu v-else :key="item.menuCode" :menu-info="item" />
+      </template>
+    </a-sub-menu>
+  `,
+  name: "SubMenu",
+  // must add isSubMenu: true
+  isSubMenu: true,
+  props: {
+    ...Menu.SubMenu.props,
+    // Cannot overlap with properties within Menu.SubMenu.props
+    menuInfo: {
+      type: Object,
+      default: () => ({})
+    }
+  }
+};
 
 /**
  * @description 判读是否为外链
